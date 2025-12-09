@@ -2,15 +2,52 @@
 {% load static %}
 {% block content %}
 <!-- Hero -->
-<div class="p-5 text-center bg-image rounded-3" style="background-image: url('{% static "images/hero.jpg" %}');">
+<div class="p-5 text-center bg-image rounded-0" style="background-image: url('{% static "images/hero.jpg" %}'); min-height: 20rem; background-repeat: no-repeat; background-size: cover;">
     <div class="d-flex justify-content-center align-items-center h-100">
-        <div class="text-white">
-            <h1 class="mb-3">Rolsa Technology</h1>
-            <h4 class="mb-3">Innovative green energy solutions for individuals</h4>
-            <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" href="#!" role="button">Book a consultation</a>
+        <div class="text-white" style="margin-top: 10rem;">
+            <h1 class="mb-3 fw-bold p-0" style="font-size:72px; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000,-1px 1px 0 #000, 1px 1px 0 #000; color: white;">
+                Rolsa Technology
+            </h1>
         </div>
     </div>
 </div>
+<!-- /Hero -->
 
-<!-- Hero -->
+<!-- Cards -->
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm bg-dark">
+                <img src="{% static 'images/booking.png' %}" class="card-img-top" alt="Booking">
+                <div class="card-body text-white text-center">
+                    <h3 class="card-title fw-bold">Book a Consultation</h3><hr>
+                    <p class="card-text">Schedule a consultation with our experts to discuss your technology needs.</p>
+                    <a href="{% url 'booking' %}" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm bg-dark">
+                <img src="{% static 'images/calculator.png' %}" class="card-img-top" alt="Calculator">
+                <div class="card-body text-white text-center">
+                    <h3 class="card-title fw-bold">Carbon Footprint Calculator</h3><hr>
+                    <p class="card-text">Calculate your carbon footprint and discover how much you could save with our services.</p>
+                    <a href="{% url 'calculator' %}" class="btn btn-primary">Calculate Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm bg-dark">
+                <img src="{% static 'images/about.png' %}" class="card-img-top" alt="About">
+                <div class="card-body text-white text-center">
+                    <h3 class="card-title fw-bold">About Us</h3><hr>
+                    <p class="card-text">Learn more about Rolsa Technology and our mission to innovate.</p>
+                    <a href="{% url 'about' %}" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Cards -->
+
 {% endblock %}

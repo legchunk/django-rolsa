@@ -1,5 +1,45 @@
 {% extends "pages/base.html" %}
 {% load static %}
 {% block content %}
-{% comment %} todo {% endcomment %}
+<!-- Hero -->
+<div class="p-5 text-center bg-image rounded-0" style="background-image: url('{% static "images/hero.jpg" %}'); min-height: 20rem; background-repeat: no-repeat; background-size: cover;">
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-white" style="margin-top: 10rem;">
+            <h1 class="mb-3 fw-bold p-0" style="font-size:72px; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000,-1px 1px 0 #000, 1px 1px 0 #000; color: white;">
+                Rolsa Technology
+            </h1>
+        </div>
+    </div>
+</div>
+<!-- /Hero -->
+ 
+<div class="container card bg-secondary my-5 w-75 mx-auto">
+    <div class="card-body text-white">
+        <h2 class="card-title fw-bold">Carbon Footprint Calculator</h2>
+        <div class="row">
+            <div class="col-md-8">
+                <form id="carbon-form">
+                    <div class="mb-3">
+                        <label for="electricity" class="form-label">Monthly Electricity Usage (kWh)</label>
+                        <input type="number" class="form-control" id="electricity" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gas" class="form-label">Monthly Natural Gas Usage (therms)</label>
+                        <input type="number" class="form-control" id="gas" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="miles" class="form-label">Monthly Miles Driven</label>
+                        <input type="number" class="form-control" id="miles" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Calculate</button>
+                </form>
+                <div id="results" style="display: none; margin-top: 20px;"></div>
+            </div>
+            <div class="col-md-4">
+                <img src="{% static 'images/calculator.png' %}" class="img-fluid" alt="Calculator">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/carbon-footprint.js' %}"></script>
 {% endblock %}

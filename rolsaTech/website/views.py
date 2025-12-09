@@ -8,8 +8,15 @@ from .forms import loginForm, createUserForm, userSettingsForm
 def home(request):
     return render(request, 'pages/index.html')
 
-def carbon_footprint(request):
+def calculator(request):
     return render(request, 'pages/carbon-footprint.html')
+
+
+def booking(request):
+    return render(request, 'pages/booking.html')
+
+def about(request):
+    return render(request, 'pages/about.html')
 
 def register(request):
     form = createUserForm()

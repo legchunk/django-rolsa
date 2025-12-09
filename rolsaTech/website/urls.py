@@ -7,5 +7,7 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
     path('register/', views.register, name='register'),
     path('settings/', views.settings, name='settings'),
-    path('carbon-footprint/', views.carbon_footprint, name='carbon_footprint'),
+    path('calculator/', views.calculator, name='calculator'),
+    path('booking/', views.booking, name='booking'),
+    path('about/', views.about, name='about'),
 ]
