@@ -10,4 +10,5 @@ urlpatterns = [
     path('calculator/', views.calculator, name='calculator'),
     path('booking/', views.booking, name='booking'),
     path('about/', views.about, name='about'),
+    path('my-bookings/', views.my_bookings, name='my_bookings'),
 ]

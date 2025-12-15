@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import loginForm, createUserForm, userSettingsForm
+from .forms import bookingForm, loginForm, createUserForm, userSettingsForm
+from .models import Booking
 
 # Create your views here.
 def home(request):
@@ -10,10 +11,6 @@ def home(request):
 
 def calculator(request):
     return render(request, 'pages/carbon-footprint.html')
-
-
-def booking(request):
-    return render(request, 'pages/booking.html')
 
 def about(request):
     return render(request, 'pages/about.html')
@@ -58,6 +55,32 @@ def user_logout(request):
     return redirect('login')
 
 @login_required(login_url="login")
+def booking(request):
+    form = bookingForm()
+    if request.method == "POST":
+        form = bookingForm(request.POST)
+        if form.is_valid():
+            date = form.cleaned_data['date']
+            if Booking.objects.filter(date=date).count() < 5:
+                booking = Booking(
+                    user=request.user,
+                    type=form.cleaned_data['type'],
+                    date=date,
+                    notes=form.cleaned_data['notes'],
+                    address=form.cleaned_data['address']
+                )
+                booking.save()
+                messages.success(request, 'Your booking has been submitted successfully!')
+                return redirect('my_bookings')
+            else:
+                messages.warning(request, 'This date is fully booked. Please choose another date.')
+        else:
+            messages.error(request, 'There was an error with your booking. Please try again.')
+    
+    context = {'form': form}
+    return render(request, 'pages/booking.html', context=context)
+
+@login_required(login_url="login")
 def settings(request):
     if request.method == "POST":
         form = userSettingsForm(request.POST, instance=request.user)
@@ -70,4 +93,10 @@ def settings(request):
     
     context = {'form': form}
     return render(request, 'pages/settings.html', context=context)
+
+@login_required(login_url="login")
+def my_bookings(request):
+    bookings = Booking.objects.filter(user=request.user).order_by('-date')
+    context = {'bookings': bookings}
+    return render(request, 'pages/my_bookings.html', context=context)
 

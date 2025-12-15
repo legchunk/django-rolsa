@@ -25,6 +25,12 @@ class createUserForm(UserCreationForm):
             user.save()
         return user
 
+class bookingForm(forms.Form):
+    type = forms.ChoiceField(choices=[('ev-charger', 'EV Charger Installation'), ('solar', 'Solar Panel Installation'), ('smart-home', 'Smart Home Energy')], widget=forms.Select(attrs={'class': 'form-control'}))
+    date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
+    notes = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}), required=False)
+    address = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}), required=False)
+
 class userSettingsForm(forms.ModelForm):
     full_name = forms.CharField(max_length=150, label="Full Name")
     password = forms.CharField(widget=forms.PasswordInput, required=False, label="New Password (leave blank to keep current)")

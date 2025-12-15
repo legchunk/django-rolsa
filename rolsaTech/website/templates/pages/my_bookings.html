@@ -1,0 +1,36 @@
+{% extends "pages/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mb-4">
+            <h1 class="display-5">My Booked Consultations</h1>
+        </div>
+    </div>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            {% if bookings %}
+                <div class="list-group">
+                    {% for booking in bookings %}
+                        <div class="list-group-item bg-dark text-white mb-3">
+                            <h5 class="mb-1">{{ booking.get_type_display }}</h5>
+                            <p class="mb-1"><strong>Date:</strong> {{ booking.date }}</p>
+                            {% if booking.address %}
+                                <p class="mb-1"><strong>Address:</strong> {{ booking.address }}</p>
+                            {% endif %}
+                            {% if booking.notes %}
+                                <p class="mb-1"><strong>Notes:</strong> {{ booking.notes }}</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-center text-muted">You have no booked consultations.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
